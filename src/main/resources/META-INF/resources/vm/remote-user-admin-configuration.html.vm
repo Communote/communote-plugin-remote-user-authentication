@@ -1,0 +1,61 @@
+#cnRenderMessages($status.Errors)
+<h5>$fmtTool.message('plugins.remoteuser.administration.configuration.title')</h5>
+<div class="form-description">$fmtTool.message("plugins.remoteuser.administration.configuration.description")</div>
+<form method="post" id="remote-user-form">
+	<fieldset>
+		<h6 class="subheadline">$fmtTool.message('plugins.remoteuser.administration.configuration.heading')</h6>
+		<div class="check">
+			<input type="checkbox" class="checkbox"
+    				name="conf.activated" id="conf.activated"
+    				#if($remoteUserConfiguration.activated) checked="checked"
+    				#end
+    		/>
+			<label for="conf.activated">#t('plugins.remoteuser.administration.configuration.activate')&nbsp;</label>
+		</div>
+		<hr />
+		<div class="w100">
+			<div class="label">
+				<label for="conf.regExToMatchRemoteUserAgainstUserLogin">$fmtTool.message('plugins.remoteuser.administration.configuration.label.regex')
+				</label>
+			</div>
+			<!-- TODO description and examples of reg ex -->
+			<div class="input">
+				<input type="text" class="text" 
+					name="conf.regExToMatchRemoteUserAgainstUserLogin"
+					id="conf.regExToMatchRemoteUserAgainstUserLogin"
+					value="$!{remoteUserConfiguration.regExToMatchRemoteUserAgainstUserLogin}"  />
+				<div style="font-size: 11px; color: #737373; width: 630px;">#t('plugins.remoteuser.administration.configuration.label.regex.hint')</div>
+			</div>
+		</div>
+		<div class="w100">
+			<div class="label">
+				<label for="conf.onlyUseExternalSystemId">$fmtTool.message('plugins.remoteuser.administration.configuration.label.onlyUseExternalSystemId')
+				</label>
+			</div>
+			<!-- TODO description and examples of reg ex -->
+			<div class="input">
+                <select id="conf.onlyUseExternalSystemId" name="conf.onlyUseExternalSystemId" class="control-externalSystemId">
+					## activeRepos is a list with ExternalUserRepository's
+						<option value="none" 
+							#if(!$item.externalSystemId ) selected="selected" #end>
+								$fmtTool.message('plugins.remoteuser.administration.configuration.label.onlyUseExternalSystemId.norestriction')</option>
+					#foreach( $item in $activeRepos )
+                        <option value="$item.externalSystemId" #if($item.externalSystemId == $remoteUserConfiguration.onlyUseExternalSystemId) selected="selected"#end>$item.externalSystemId</option>
+                    #end
+            
+			    </select>
+				<div style="font-size: 11px; color: #737373; width: 630px;">#t('plugins.remoteuser.administration.configuration.label.onlyUseExternalSystemId.hint')</div>
+			</div>
+		</div>			
+	</fieldset>
+	<div class="info">$fmtTool.message('form.info.required.fields')</div>
+	<div class="actionbar actionbar-general">
+		<div class="button-gray main">
+			<input type="submit"
+				value="$fmtTool.message('plugins.remoteuser.administration.configuration.button.save')" />
+		</div>
+		<span class="clear">
+			<!-- Empty -->
+		</span>
+	</div>
+</form>
