@@ -15,7 +15,7 @@ is not listed cannot be used with the plugin.
 
 | Plugin Version  | Supported Server Version |
 | ------------- | ------------- |
-| 3.4  | 3.4  |
+| 3.4  | 3.4.x  |
 
 # Installation
 To install the plugin get a release from the [Releases](https://github.com/Communote/communote-plugin-remote-user-authentication/releases) 
